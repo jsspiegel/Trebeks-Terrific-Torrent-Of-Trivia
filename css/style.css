@@ -1,0 +1,130 @@
+@font-face{
+    font-family: Korinna;
+    src: url(/fonts/Korinna.ttf);
+}
+
+body{
+  background-color: rgb(212,234,204);
+  background-image: url("http://media.giphy.com/media/9LUyapZzDSOpa/giphy.gif");
+}
+
+#wrapper{
+  width: 200px;
+  margin: auto auto;
+  border: 8px outset black;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(245,188,132);
+  position: absolute;               
+  top: 50%;                         
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -60%);
+}
+
+p, a{
+  text-align: center;
+  color: rgba(255,255,255,1);
+  border-radius: 10px;
+  padding: 5px;
+  font-family: "Korinna";
+  font-size: 18px;
+  text-shadow: 2px 2px rgba(0,0,0,1);
+}
+
+p{
+  background-color: rgba(12,37,139,1);
+  display: none;
+}
+
+#legal p, #legal a{
+  background-color: rgba(0,0,0,0);
+  margin: 0;
+  padding: 0;
+}
+
+#legal p{
+  font-size: 10px;
+}
+
+#legal a{
+  font-size: 14px;
+  transition: color 0.25s;
+}
+
+#legal a:hover{
+  color: rgb(150,150,150);
+}
+
+#legal{
+  background-color: rgba(12,37,139,1);
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 0;
+  text-align: center;
+}
+
+#settings{
+  display: none;
+}
+
+#settings p{
+  font-size: 14px;
+}
+
+#settings label{
+  font-family: Korinna;
+  font-size: 12px;
+}
+
+#values{
+  column-count: 2;
+  column-rule: 1px solid gray;
+  text-align: center;
+}
+
+#newQ{
+  width: 100%;
+  background-color: rgb(100,100,100);
+  border: 1px solid black;
+  font-size: 18px;
+  padding: 5px;
+  color: white;
+  font-family: "Korinna";
+  text-shadow: 2px 2px black;
+  transition: background-color 0.1s;
+}
+
+#newQ:hover{
+  background-color: rgb(128,128,128);
+}
+
+#trebekOne{
+  position: absolute;               
+  bottom: 0%;
+  left: 10%;
+}
+
+#trebekTwo{
+  position: absolute;               
+  bottom: 0%;
+  right: 10%;
+}
+
+#wrapper div{
+  transition: opacity 0.5s;
+}
+
+#categoryText{
+  word-wrap: break-word;
+}
+
+#gear{
+  display: block;
+  position: relative;
+  left: 42.5%;
+}
+
+#gear, #newQ, #answer{
+  cursor: pointer;
+}

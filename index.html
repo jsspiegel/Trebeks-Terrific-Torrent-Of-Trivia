@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Trebek's Terrific Torrent Of Trivia!</title>
+  <link rel="shortcut icon" href="images/JeopardyLogo.png" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+ </head>
+ <body>
+  <img src="images/TrebekOne.png" id="trebekOne">
+   <img src="images/TrebekTwo.png" id="trebekTwo">
+  <div id="wrapper">
+  <div id="main">
+  <button id="newQ">Hit me, Trebek!</button>
+   <div id="category">
+     <p id="categoryText"></p>
+   </div>
+   <div id="clue">
+    <p id="clueText"></p>
+  </div>
+  <div id="answer">
+    <p id="answerText"></p>
+  </div>
+    </div>
+    <div id="settings">
+        <p>Gif Background</p>
+        <form>
+        <input class="gif" type="radio" name="gif" value="on" onclick="changeBackground()" checked><label>On</label>
+        <br>
+        <input class="gif" type="radio" name="gif" value="off" onclick="changeBackground()"><label>Off</label>
+        </form>
+        <hr>
+        <div id="legal">
+        <p>Created by Jacob Spiegel. Question API from </p><a href="http://wolfewylie.com/jeopardy/api.html">The Jeopardy Project</a><p> by </p><a href="http://www.wolfewylie.com/">William Wolfe-Wylie</a><p>. Alex Trebek image from </p><a href="http://jservice.io/">jservice.io</a><p> by </p><a href="https://github.com/sottenad">Steve Ottenad</a><p>. Gifs from </p><a href="http://giphy.com/">giphy.com</a><p> and </p><a href="https://www.google.com/imghp?hl=en&tab=wi&ei=OHzUVfLzEYb_ggTrlp3wBg&ved=0CBUQqi4oAQ">Google Images</a><p>. I do not own any of the questions, images, or gifs used, and am not intending to profit off them in any way.</p>
+        </div>
+    </div>
+    <hr>
+    <img src="images/Gear_icon.svg.png" width="30px" id="gear">
+   </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+ </body>
+</html>
