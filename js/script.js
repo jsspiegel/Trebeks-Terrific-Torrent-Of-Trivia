@@ -6,82 +6,84 @@ var gifBG = true;
 var showSettings = false;
 
 $(function() {
-  $("#newQ").click(function(){
-    if($("input[name='gif']:checked").val() == "on"){
-      $("body").css("background-image","url(" + backgroundGifs[Math.floor(Math.random()*backgroundGifs.length)] + ")" );
-    } else{
-      $("body").css("background-image","none" );
+    $("#newQ").click(function() {
+        if ($("input[name='gif']:checked").val() == "on") {
+            $("body").css("background-image", "url(" + backgroundGifs[Math.floor(Math.random() * backgroundGifs.length)] + ")");
+        } else {
+            $("body").css("background-image", "none");
+        }
+        $("#wrapper div").css("opacity", "0");
+        getQuestions();
+    });
+
+    $("#answer").click(function() {
+        showAnswer = !showAnswer;
+        if (showAnswer) {
+            $("#answerText").html("The correct answer is: " + resultGlobal["answer"]);
+        } else {
+            $("#answerText").html("Click to reveal answer");
+        }
+    });
+
+    $(".gif").click(function() {
+        if ($("input[name='gif']:checked").val() == "on") {
+            $("body").css("background-image", "url(" + backgroundGifs[Math.floor(Math.random() * backgroundGifs.length)] + ")");
+        } else {
+            $("body").css("background-image", "none");
+        }
+    });
+
+    $("#gear").click(function() {
+        showSettings = !showSettings;
+        $("#settings p").css("display", "block");
+        if (showSettings) {
+            $("#settings").css("display", "block");
+            $("#settings p").css("display", "block");
+            $("#legal p").css("display", "inline");
+            $("#main").css("display", "none");
+            $("#wrapper").css("width", "300px");
+        } else {
+            $("#main").css("display", "block");
+            $("#settings p").css("display", "block");
+            $("#legal p").css("display", "inline");
+            $("#settings").css("display", "none");
+            $("#wrapper").css("width", "200px");
+        }
+    });
+
+    var getQuestions = function() {
+        $.ajax({
+            type: "POST",
+
+            dataType: 'jsonp',
+
+            url: "http://wolfewylie.com/cgi-bin/jeopardy.py",
+
+            data: {
+                question: query[Math.floor(Math.random() * query.length)]
+            },
+
+            success: function(result) {
+                clueNum = Math.floor(Math.random() * result.length);
+                resultGlobal = result[clueNum];
+                $("p").css("display", "block");
+                $("#wrapper div").css("opacity", "1");
+                if (result[clueNum]["dollars"] != "None") {
+                    $("#categoryText").html(result[clueNum]["category"] + " for " + result[clueNum]["dollars"]);
+                } else {
+                    $("#categoryText").html(result[clueNum]["category"]);
+                }
+                $("#clueText").html(result[clueNum]["question"]);
+                if (showAnswer) {
+                    $("#answerText").html("The correct answer is: " + result[clueNum]["answer"]);
+                } else {
+                    $("#answerText").html("Click to reveal answer");
+                }
+            },
+            error: function(xhr, error) {
+                console.log(error);
+            }
+        });
     }
-    $("#wrapper div").css("opacity","0");
-    getQuestions();
-  });
-       
-  $("#answer").click(function(){
-       showAnswer = !showAnswer;
-       if(showAnswer){
-           $("#answerText").html("The correct answer is: " + resultGlobal["answer"]);
-       } else{
-           $("#answerText").html("Click to reveal answer");
-       }
-     });
-  
-  $(".gif").click(function(){
-    if($("input[name='gif']:checked").val() == "on"){
-      $("body").css("background-image","url(" + backgroundGifs[Math.floor(Math.random()*backgroundGifs.length)] + ")" );
-    } else{
-      $("body").css("background-image","none" );
-    }
-  });
-  
-  $("#gear").click(function(){
-       showSettings = !showSettings;
-       $("#settings p").css("display","block");
-       if(showSettings){
-           $("#settings").css("display","block");
-           $("#settings p").css("display","block");
-           $("#legal p").css("display","inline");
-           $("#main").css("display","none");
-           $("#wrapper").css("width","300px");
-       } else{
-           $("#main").css("display","block");
-           $("#settings p").css("display","block");
-           $("#legal p").css("display","inline");
-           $("#settings").css("display","none");
-           $("#wrapper").css("width","200px");
-       }
-     });
-  
-  var getQuestions = function(){
-    $.ajax({ 
-             type: "POST",
 
-              dataType: 'jsonp',
-
-              url: "http://wolfewylie.com/cgi-bin/jeopardy.py",
-
-              data: {question: query[Math.floor(Math.random()*query.length)]},
-             
-             success: function(result){
-              clueNum = Math.floor(Math.random()*result.length);
-              resultGlobal = result[clueNum];
-              $("p").css("display","block");
-              $("#wrapper div").css("opacity","1");
-              if(result[clueNum]["dollars"] != "None"){
-                $("#categoryText").html(result[clueNum]["category"] + " for " + result[clueNum]["dollars"]);
-              } else {
-                $("#categoryText").html(result[clueNum]["category"]);
-              }
-              $("#clueText").html(result[clueNum]["question"]);
-              if(showAnswer){
-                $("#answerText").html("The correct answer is: " + result[clueNum]["answer"]);
-              } else{
-                $("#answerText").html("Click to reveal answer");
-              }
-             },
-             error: function(xhr,error){
-               console.log(error);
-             }
-             });
-  }
-       
 });
